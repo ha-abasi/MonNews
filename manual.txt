@@ -1,0 +1,22 @@
+>Retrofit :
+    implementation("com.squareup.retrofit2:retrofit:2.11.0")
+
+> Retrofit-Converter {serialization}:
+    implementation("com.google.code.gson:gson:2.11.0")
+
+    Note: if you got any other formats like xml, you can use the other serialization :
+        https://square.github.io/retrofit/
+
+
+>LiveCycle :
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.7")
+
+
+
+
+https://newsapi.org/v2/everything?q=tesla&from=2024-11-18&sortBy=publishedAt&apiKey=API_KEY
+https://newsapi.org/v2/everything?q=apple&from=2024-12-17&to=2024-12-17&sortBy=popularity&apiKey=API_KEY
+
+
+
