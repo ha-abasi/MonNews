@@ -13,5 +13,6 @@
 .externalNativeBuild
 .cxx
 local.properties
+/.idea
 
-api_key
+app/src/main/assets/news_api_key.txt
