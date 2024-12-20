@@ -28,6 +28,11 @@ class NewsViewModel: ViewModel() {
 
 
     init {
+        refresh()
+    }
+
+    fun refresh(){
+        news = null // clear
         viewModelScope.launch {
             val newsList = repository.getNews(ApiKey.apiKey) // fetch network data
             news = newsList // update the state, cause the composable to be regenerated
