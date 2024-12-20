@@ -9,9 +9,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
 import ir.hamedabasi.android.kotlin.compose.monews.retrofit.models.Article
 
@@ -23,8 +21,8 @@ fun NewsItemScreen(article: Article){
     ) {
         Column(modifier = Modifier.padding(16.dp)){
             AsyncImage(model = article.urlToImage, contentDescription = "Image")
-            Text(article.title ?: "(Title is Null)", style = MaterialTheme.typography.titleLarge)
-            Text(article.content ?: "(Content is Null)", style = MaterialTheme.typography.bodySmall)
+            Text(article.title ?: "(Title Not Provided)", style = MaterialTheme.typography.titleLarge, modifier = Modifier.padding(5.dp))
+            Text(article.content ?: "(Content Not Provided)", style = MaterialTheme.typography.bodySmall, modifier = Modifier.padding(5.dp))
         }
     }
 }
