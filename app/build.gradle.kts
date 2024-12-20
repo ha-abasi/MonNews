@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "ir.hamedabasi.android.kotlin.compose.monews"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "ir.hamedabasi.android.kotlin.compose.monews"
@@ -65,7 +65,9 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.7")
 
-
+    // image network
+    implementation("io.coil-kt.coil3:coil-compose:3.0.4")
+    implementation("io.coil-kt.coil3:coil-network-okhttp:3.0.4")
 
 
 }

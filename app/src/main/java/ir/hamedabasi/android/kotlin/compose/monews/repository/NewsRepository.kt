@@ -9,6 +9,6 @@ class NewsRepository {
     private val apiService: ApiService = RetrofitInstance.api
 
     suspend fun getNews(apiKey: String): NewsList{
-        return apiService.getNewsList(apiKey)
+        return apiService.getNewsList("us", apiKey) // for united states
     }
 }

@@ -12,6 +12,9 @@
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.7")
 
+>Coil :
+    implementation("io.coil-kt.coil3:coil-compose:3.0.4")
+    implementation("io.coil-kt.coil3:coil-network-okhttp:3.0.4")
 
 >Sample URL :
     https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=YourKey
