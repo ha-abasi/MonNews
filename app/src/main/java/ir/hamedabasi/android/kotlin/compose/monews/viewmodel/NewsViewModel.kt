@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import ir.hamedabasi.android.kotlin.compose.monews.ApiKey
 import ir.hamedabasi.android.kotlin.compose.monews.repository.NewsRepository
+import ir.hamedabasi.android.kotlin.compose.monews.retrofit.models.Article
 import ir.hamedabasi.android.kotlin.compose.monews.retrofit.models.NewsList
 import kotlinx.coroutines.launch
 import java.io.File
@@ -27,6 +28,11 @@ class NewsViewModel: ViewModel() {
         private set // Only current class can set the value
 
 
+    var selectedNews by mutableStateOf<Article?>(null)
+        private set
+
+
+
     init {
         refresh()
     }
@@ -38,4 +44,11 @@ class NewsViewModel: ViewModel() {
             news = newsList // update the state, cause the composable to be regenerated
         }
     }
+
+    fun setCurrentNews(article: Article){
+        viewModelScope.launch {
+            selectedNews = article
+        }
+    }
+
 }

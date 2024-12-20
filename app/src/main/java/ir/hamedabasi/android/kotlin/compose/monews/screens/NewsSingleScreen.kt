@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -25,19 +26,19 @@ import ir.hamedabasi.android.kotlin.compose.monews.viewmodel.NewsViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun NewsListScreen(newsViewModel: NewsViewModel, navController: NavController){
-    val newsCount = newsViewModel.news?.totalResults
+fun NewsSingleScreen(newsViewModel: NewsViewModel, navController: NavController){
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = {
             TopAppBar(
-                actions = {
-                    IconButton(onClick = {newsViewModel.refresh()},) { Icon(imageVector = Icons.Default.Refresh, contentDescription = "", tint = Color.White) }
+                navigationIcon = {
+                    IconButton(onClick = { navController.popBackStack() }) {
+                        Icon(Icons.AutoMirrored.Default.ArrowBack, contentDescription = "Back")
+                    }
                 },
                 title = {
                 Row {
-                    Text("News Found : ", style = MaterialTheme.typography.labelLarge, color = Color.White)
-                    Text(if(newsCount == null) "Fetching .." else "$newsCount", style = MaterialTheme.typography.labelLarge, color = Color.Yellow)
+                    Text("Author : " + (newsViewModel.selectedNews?.author ?: "(Not Provided)"), style = MaterialTheme.typography.labelLarge, color = Color.White)
                 }
             },
                 colors = TopAppBarDefaults.topAppBarColors().copy(containerColor = Color("#ef3d1d".toColorInt()))
@@ -46,13 +47,11 @@ fun NewsListScreen(newsViewModel: NewsViewModel, navController: NavController){
 
         ) { innerPadding ->
         Column (modifier = Modifier.padding(innerPadding)){
-        LazyColumn {
-            newsViewModel.news?.let {
-                items(it.articles){ article ->
-                    NewsItemScreen(article, navController, newsViewModel)
-                }
+            if (newsViewModel.selectedNews != null)
+                NewsItemScreen(newsViewModel.selectedNews!!, navController, newsViewModel, fullContent = true)
+            else{
+                Text("Not provided !")
             }
-        }
     }
 
     }

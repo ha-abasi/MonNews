@@ -10,20 +10,27 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import coil3.compose.AsyncImage
 import ir.hamedabasi.android.kotlin.compose.monews.retrofit.models.Article
+import ir.hamedabasi.android.kotlin.compose.monews.viewmodel.NewsViewModel
 
 @Composable
-fun NewsItemScreen(article: Article){
+fun NewsItemScreen(article: Article, navController: NavController, model: NewsViewModel, fullContent: Boolean = false){
     var content = article.content
     if (content == null){
         content = "(Content Not Provided)"
     }else{
-        if (content.length > 110) content = content.substring(0, 100) + " ..."
+        if (!fullContent) // if it's a short content
+            if (content.length > 110) content = content.substring(0, 100) + " ..."
     }
     Card(
         elevation = CardDefaults.cardElevation(8.dp),
-        modifier = Modifier.padding(12.dp).fillMaxWidth()
+        modifier = Modifier.padding(12.dp).fillMaxWidth(),
+        onClick = {
+            model.setCurrentNews(article)
+            navController.navigate("news_item")
+        }
     ) {
         Column(modifier = Modifier.padding(16.dp)){
             AsyncImage(model = article.urlToImage, contentDescription = "Image")
