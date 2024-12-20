@@ -15,6 +15,12 @@ import ir.hamedabasi.android.kotlin.compose.monews.retrofit.models.Article
 
 @Composable
 fun NewsItemScreen(article: Article){
+    var content = article.content
+    if (content == null){
+        content = "(Content Not Provided)"
+    }else{
+        if (content.length > 110) content = content.substring(0, 100) + " ..."
+    }
     Card(
         elevation = CardDefaults.cardElevation(8.dp),
         modifier = Modifier.padding(12.dp).fillMaxWidth()
@@ -22,7 +28,8 @@ fun NewsItemScreen(article: Article){
         Column(modifier = Modifier.padding(16.dp)){
             AsyncImage(model = article.urlToImage, contentDescription = "Image")
             Text(article.title ?: "(Title Not Provided)", style = MaterialTheme.typography.titleLarge, modifier = Modifier.padding(5.dp))
-            Text(article.content ?: "(Content Not Provided)", style = MaterialTheme.typography.bodySmall, modifier = Modifier.padding(5.dp))
+            Text( content, style = MaterialTheme.typography.bodySmall, modifier = Modifier.padding(5.dp))
+            Text(article.publishedAt?.toString() ?: "(Content Not Provided)", style = MaterialTheme.typography.bodySmall, modifier = Modifier.padding(5.dp))
         }
     }
 }
